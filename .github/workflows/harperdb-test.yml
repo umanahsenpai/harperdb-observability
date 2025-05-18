@@ -31,3 +31,10 @@ jobs:
         curl -X POST http://localhost:9925 \
           -H "Content-Type: application/json" \
           -d '{"operation":"insert","schema":"dev","table":"dogs","records":[{"name":"Rocky","breed":"German Shepherd"}]}'
+
+    - name: Run metrics collection
+      run: |
+        docker stats --no-stream > metrics.txt
+
+    - name: Generate metrics report
+      run: python3 report.py
