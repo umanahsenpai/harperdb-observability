@@ -1,0 +1,33 @@
+name: HarperDB Container Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-harperdb:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Run docker compose
+      run: docker compose up -d
+
+    - name: Wait for HarperDB to start
+      run: sleep 10
+
+    - name: Test API availability
+      run: curl -i http://localhost:9925
+
+    - name: Load data into HarperDB
+      run: |
+        curl -X POST http://localhost:9925 \
+          -H "Content-Type: application/json" \
+          -d '{"operation":"insert","schema":"dev","table":"dogs","records":[{"name":"Rocky","breed":"German Shepherd"}]}'
