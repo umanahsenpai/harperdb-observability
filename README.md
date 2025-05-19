@@ -4,7 +4,7 @@ Harperdb Interview Coding  Challenge
 # PROJECT INTENT
 This project is about deploying a lightweight, containerized instance of HarperDB using Docker.My goal is to make it easy to spin up, monitor, test and collect some performance metrics.
 
-I built this using GitHub Actions for CICD, so everything I push a code, it automatically spins up the HarperDB container, runs a test, capture metrics, adn print a small report.
+I built this using GitHub Actions for CICD, so everytime I push a code, it automatically spins up the HarperDB container, run a test, capture metrics, and print a small report.
 
 # HOW to Execute the Workflow
 
